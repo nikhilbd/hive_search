@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
+<html>
+  <head>
+    <title>Hive Query Search</title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+    <script src="hive_search.js" type="text/javascript"></script>
+    <style>
+      {% include "hive_search_styles.css" %}
+    </style>
+  </head>
+
+  <body>
+    <form id="queryForm" action="" method="get">{% csrf_token %}
+      <table>
+        <tr>
+          <td><b>Search for:&nbsp;&nbsp;</b>{{ form.q }}</td>
+          <td>From:&nbsp;&nbsp;{{ form.fromDate }}</td>
+          <td>To:&nbsp;&nbsp;{{ form.toDate }}</td>
+          <td><input type="submit" value="Submit" /></td>
+        </tr>
+      </table>
+    </form>
+    <br /><hr /><br />
+      Results from {{ fromDate }} to {{ toDate }} (Data available from {{ firstDate }} onwards)
+      <table>
+        <tr><td class=spacer></td></tr>
+        {% for result in results %}
+        <tr>
+          <td>
+            <table class="result">
+              <tr><td class="resulttitle">
+                <a href="{{ result.job_url }}">{{ result.title|safe }}
+              </td></tr>
+              <tr><td>{{ result.snippet|safe }}</td></tr>
+              <tr><td class="resultmeta">
+                By <a href="/hive_search/?q={{ result.owner }}">{{ result.owner }}</a>
+                , on {{ result.completion_time }}
+              </td></tr>
+            </table>
+          </td>
+        </tr>
+        <tr><td class=spacer></td></tr>
+        {% endfor %}
+      </table>
+
+  </body>
+</html>

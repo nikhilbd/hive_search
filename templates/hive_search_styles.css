@@ -1,0 +1,31 @@
+body {
+  color: #211922;
+  font-family: arial,sans-serif;
+  font-size: small;
+  font-weight: medium;
+  margin-left: 100px;
+  margin-right: 200px;
+  margin-top: 20px;
+}
+
+#queryForm {
+  font-size:medium
+}
+
+.resulttitle {
+  font-size: medium;
+}
+
+.resultmeta {
+  color: #666;
+}
+
+.result {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  width: 600px;
+}
+
+.joburl {
+  font-size: medium;
+}
